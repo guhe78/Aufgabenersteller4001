@@ -46,7 +46,7 @@ public class CreatePDF {
 
         String file = String.valueOf(Files.createFile(filePath));
         Document document = new Document(PageSize.A4, 0, 0, 25, 25);
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file));
+        PdfWriter.getInstance(document, new FileOutputStream(file));
 
         document.open();
         document.add(createTable(list));

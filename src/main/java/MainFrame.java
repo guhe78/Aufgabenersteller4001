@@ -111,7 +111,7 @@ public class MainFrame extends JFrame {
 
         button.addActionListener((ActionEvent e) -> {
             ArrayList<String> checkBoxs = new ArrayList<>();
-            CreatePDF createPDF = new CreatePDF();
+            createPDF = new CreatePDF();
             int n1 = (Integer) firstNumber.getValue();
             int n2 = (Integer) secondNumber.getValue();
 
@@ -139,14 +139,15 @@ public class MainFrame extends JFrame {
             ArrayList<String> hiddenList = calculateNumbers.printHiddenTasks(list, 2);
 
             try {
-                createPDF.create(hiddenList, dir);
-            } catch (DocumentException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
+                try {
+                    createPDF.create(hiddenList, dir);
+                } catch (IOException e1) {
+                    System.out.println("Error: " + e1);
+                }
+            } catch (DocumentException de) {
+                System.out.println("Error: " + de);
             }
+
         });
         buttonPanel.add(button);
 
